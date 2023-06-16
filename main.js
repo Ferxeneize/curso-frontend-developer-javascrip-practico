@@ -4,6 +4,7 @@ const iconHamburguesaMobile = document.querySelector (".menu")
 const cambiarMenuMobile = document.querySelector(".mobile-menu")
 const iconCarrito = document.querySelector (".navbar-shopping-cart")
 const cambiarMenuCarrito = document.querySelector(".product-detail")
+const contenedorDeProductos = document.querySelector(".cards-container")
 
 nvarEmail.addEventListener("click", funcionCambiarMenu);
 function funcionCambiarMenu () {
@@ -23,3 +24,63 @@ function funcionCambiarMenuCarrito () {
     cambiarMenu.classList.add("inactiveE");
     cambiarMenuMobile.classList.add("inactiveE");
 };
+
+const listadeProductos = []
+
+listadeProductos.push({
+    nombre: "Bici",
+    precio: 25000,
+    imagen: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+})
+listadeProductos.push({
+    nombre: "Auto",
+    precio: 6500000 ,
+    imagen: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+})
+listadeProductos.push({
+    nombre: "Moto",
+    precio: 250000,
+    imagen: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+})
+listadeProductos.push({
+    nombre: "Casa",
+    precio: 77880000,
+    imagen: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+})
+
+function listarProductos(a) {
+    for (producto of a){
+        const productCard = document.createElement("div");
+        productCard.classList.add("product-card");
+        
+        const img = document.createElement("img")
+        img.setAttribute("src", producto.imagen)
+        productCard.appendChild(img)
+        
+        const productInfo = document.createElement("div");
+        productInfo.classList.add("product-info")
+        productCard.appendChild(productInfo)
+        
+        const divSolo = document.createElement("div");
+        
+        productInfo.appendChild(divSolo)
+        const pPrecio = document.createElement("p");
+        pPrecio.innerText = "$ " + producto.precio
+        divSolo.appendChild(pPrecio)
+        
+        const pNombre = document.createElement("p");
+        pNombre.innerText = producto.nombre
+        divSolo.appendChild(pNombre)
+        
+        const figure = document.createElement("figure");
+        productInfo.appendChild(figure)
+        
+        const imagenicono = document.createElement("img");
+        imagenicono.setAttribute("src", "./icons/bt_add_to_cart.svg")
+        
+        figure.appendChild(imagenicono)
+        contenedorDeProductos.appendChild(productCard)
+        } 
+}
+
+listarProductos (listadeProductos)
