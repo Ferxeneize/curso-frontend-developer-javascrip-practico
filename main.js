@@ -48,6 +48,8 @@ listadeProductos.push({
     imagen: "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
 })
 
+
+
 function listarProductos(a) {
     for (producto of a){
         const productCard = document.createElement("div");
@@ -84,3 +86,26 @@ function listarProductos(a) {
 }
 
 listarProductos (listadeProductos)
+
+
+// Inicio Probamos creando los productos por un Constructor!!!!! funciono!!!!!!!
+
+function constructorProducto(a,b)  {
+    this.nombre = a;
+    this.precio = b;
+    this.imagen = "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
+}
+var  listadoDeProductosConstructor = []
+
+function agregarProductos (a,b) { 
+    listadoDeProductosConstructor.push(new constructorProducto(a,b))
+}
+agregarProductos ("BiciConstruc", 1500 )
+agregarProductos ("MotoConstruc", 3000 )
+agregarProductos ("AutoConstruc", 25000 )
+agregarProductos ("CASAConstruc", 215000 )
+
+
+listarProductos (listadoDeProductosConstructor)
+
+// Fin Probamos creando los productos por un Constructor!!!!! funciono!!!!!!!
