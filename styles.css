@@ -201,13 +201,15 @@
 }
 .shopping-cart {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: auto auto 1fr auto auto;
   gap: 16px;
   margin-bottom: 24px;
   align-items: center;
 }
 .shopping-cart figure {
   margin: 0;
+  width: 70px;
+  height: 70px;
 }
 .shopping-cart figure img {
   width: 70px;

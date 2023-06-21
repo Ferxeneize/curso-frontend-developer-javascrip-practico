@@ -47,7 +47,7 @@
         <li class="navbar-email">platzi@example.com</li>
         <li class="navbar-shopping-cart">
           <img src="./icons/icon_shopping_cart.svg" alt="shopping cart">
-          <div>2</div>
+          <div class="cantidadAgregada"></div>
         </li>
       </ul>
     </div>
@@ -115,13 +115,13 @@
     <div class="productDetail-close">
       <img src="./icons/icon_close.png" alt="close">
     </div>
-    <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+    <img class = "imagenDetalle" src="" alt="bike">
     <div class="productInfo">
-      <p>$35,00</p>
-      <p>Bike</p>
+      <p class="detallePrecio"></p>
+      <p class="detalleNombre"></p>
       <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
       <button class="primary-button add-to-cart-button">
-        <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
+        <img class="add-to-cart-button" src="./icons/bt_add_to_cart.svg" alt="add to cart">
         Add to cart
       </button>
     </div>
@@ -129,11 +129,22 @@
 
   <aside class="product-detail inactiveE">
     <div class="title-container">
-      <img src="./icons/flechita.svg" alt="arrow">
+      <img class="irParaAtras" src="./icons/flechita.svg" alt="arrow">
       <p class="title">My order</p>
     </div>
-
     <div class="my-order-content">
+      <div class="shopping-cart inactiveE">
+        <p>3</p>
+        <figure>
+          <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+        </figure>
+        <p>Bike</p>
+        <p>$100,00</p>
+        
+        <img src="./icons/icon_close.png" alt="close">
+      </div> 
+
+      
       <div class="shopping-cart">
         <figure>
           <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
@@ -143,29 +154,20 @@
         <img src="./icons/icon_close.png" alt="close">
       </div>
 
-      <div class="shopping-cart">
+      <div class="inactiveE shopping-cart">
         <figure>
           <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
         </figure>
         <p>Bike</p>
         <p>$30,00</p>
         <img src="./icons/icon_close.png" alt="close">
-      </div>
-
-      <div class="shopping-cart">
-        <figure>
-          <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-        </figure>
-        <p>Bike</p>
-        <p>$30,00</p>
-        <img src="./icons/icon_close.png" alt="close">
-      </div>
+      </div> 
 
       <div class="order">
         <p>
           <span>Total</span>
         </p>
-        <p>$560.00</p>
+        <p class="compraTotal">$560.00</p>
       </div>
 
       <button class="primary-button">
