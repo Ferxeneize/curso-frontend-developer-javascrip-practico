@@ -15,7 +15,7 @@ const claseDetalleNombre = document.querySelector(".detalleNombre")
 const botonAgregarAlCarro = document.querySelector(".add-to-cart-button")
 const compraTotal = document.querySelector(".compraTotal")
 const irParaAtras = document.querySelector (".irParaAtras")
-const myOrderContent = document.querySelector (".my-order-content")
+const myOrderContent = document.querySelector (".contenedorProductosCarrito")
 
 
 
@@ -64,7 +64,7 @@ function funcionCambiarMenuCarrito () {
     cambiarMenuCarrito.classList.toggle("inactiveE");
     cambiarMenu.classList.add("inactiveE");
     cambiarMenuMobile.classList.add("inactiveE");
-    detalleProducto.classList.add("inactiveE")
+    detalleProducto.classList.add("inactiveE");
 
 };
 
@@ -101,6 +101,30 @@ function constructorCarrito(a,b,c,d)  {
 }
 let  listadoDeProductosCarrito = []
 
+function eliminarProducto (e){
+   let nombreAeliminar = e.target.parentElement.id
+   let indice
+   
+
+   for (let b= 0; b < listadoDeProductosCarrito.length; b++){
+    var convertirArray = Object.values(listadoDeProductosCarrito[b])
+        if (convertirArray[1] == nombreAeliminar) {
+            indice = b
+           let cantidad = convertirArray[0]
+           let precio = convertirArray[2]
+           importeTotalCarrito = importeTotalCarrito - (cantidad * precio)
+           compraTotal.innerHTML = "$ " + importeTotalCarrito
+           numeroProductosagregados = numeroProductosagregados - cantidad
+           iconoCantidadAgregada.innerText = numeroProductosagregados
+        } 
+    }
+
+    listadoDeProductosCarrito.splice(indice , 1)
+    console.log(listadoDeProductosCarrito)
+   
+    e.target.parentElement.remove()
+}
+
 
 function sacarDatosProducto (e){
     
@@ -125,62 +149,41 @@ function sacarDatosProducto (e){
 
     if (productosRepetidos){
 
+
         for (let b= 0; b < listadoDeProductosCarrito.length; b++){
             var convertirArray = Object.values(listadoDeProductosCarrito[b])
             if (convertirArray[1] == nombreProductoCarrito) {
                 convertirArray[0]++
                 listadoDeProductosCarrito[b].cantidad = convertirArray[0]
+                const p1 = document.querySelector('.'+nombreProductoCarrito)
+                p1.innerText = convertirArray[0]
              } 
         }
-    }else {listadoDeProductosCarrito.push(new constructorCarrito(1,nombreProductoCarrito,precioProductoCarrito,srcProductoCarrito))}
-    
-    importeTotalCarrito = 0
-    for (let b= 0; b < listadoDeProductosCarrito.length; b++){
-        var convertirArray = Object.values(listadoDeProductosCarrito[b])
-        importeTotalCarrito = importeTotalCarrito + (convertirArray[0] * convertirArray[2])
-    }
-    console.log("El importe total es: $ "+importeTotalCarrito )
-    compraTotal.innerHTML = "$ " + importeTotalCarrito
-
-
-}
-
-/* <div class="shopping-cart">
-        <p>3</p>
-        <figure>
-          <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-        </figure>
-        <p>Bike</p>
-        <p>$100,00</p>
-        
-        <img src="./icons/icon_close.png" alt="close">
-    </div> */
-
-
-function listarProductosCarrito(a){
-
-    myOrderContent.remove
-    
-    for (producto of a) {
-        const div1ero = document.createElement("div");
-        div1ero.classList.add("shopping-cart")
-
+    }else {
+        listadoDeProductosCarrito.push(new constructorCarrito(1,nombreProductoCarrito,precioProductoCarrito,srcProductoCarrito))
+           
         const p1 = document.createElement("p")
-        p1.innerText = producto.cantidad
+        p1.innerText = 1
+        p1.classList.add (nombreProductoCarrito)
+        
+        const div1ero = document.createElement("div");
+        div1ero.classList.add("shopping-cart");
+        div1ero.setAttribute('id', nombreProductoCarrito)
 
         const figuree = document.createElement("figure")
         const imgg = document.createElement("img")
-        imgg.setAttribute ("src", producto.imagen)
+        imgg.setAttribute ("src", srcProductoCarrito)
 
         const p2 = document.createElement("p")
-        p2.innerText = producto.nombre
+        p2.innerText = nombreProductoCarrito
 
         const p3 = document.createElement("p")
-        p3.innerText = "$ " + producto.precio
+        p3.innerText = "$ " + precioProductoCarrito
 
         const imga = document.createElement ('img')
         imga.setAttribute ('src', './icons/icon_close.png')
         imga.setAttribute ('alt', 'close')
+        imga.addEventListener('click', eliminarProducto)
 
         div1ero.appendChild(p1)
         figuree.appendChild(imgg)
@@ -190,8 +193,19 @@ function listarProductosCarrito(a){
         div1ero.appendChild(imga)
         
         myOrderContent.appendChild(div1ero)
+    
     }
+    
+    importeTotalCarrito = 0
+    for (let b= 0; b < listadoDeProductosCarrito.length; b++){
+        var convertirArray = Object.values(listadoDeProductosCarrito[b])
+        importeTotalCarrito = importeTotalCarrito + (convertirArray[0] * convertirArray[2])
+    }
+    console.log("El importe total es: $ "+importeTotalCarrito )
+    compraTotal.innerHTML = "$ " + importeTotalCarrito
 }
+
+
 
 
 const listadeProductos = []
@@ -273,17 +287,6 @@ listarProductos (listadeProductos)
 
 
 
-/* <div class="shopping-cart">
-        <figure>
-          <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-        </figure>
-        <p>Bike</p>
-        <p>$30,00</p>
-        <img src="./icons/icon_close.png" alt="close">
-      </div> */
-
-
-
 
 function datosDetallePructucto(listadeProductos) { 
      for (let b= 0; b < listadeProductos.length; b++){
@@ -294,28 +297,3 @@ function datosDetallePructucto(listadeProductos) {
               }
           }   
      }}
-
-
-// Inicio Probamos creando los productos por un Constructor!!!!! funciono!!!!!!!
-
-// function constructorProducto(a,b)  {
-//     this.id = idProducto
-//     this.nombre = a;
-//     this.precio = b;
-//     this.imagen = "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940";
-// }
-// var  listadoDeProductosConstructor = []
-
-// function agregarProductos (a,b) { 
-//     listadoDeProductosConstructor.push(new constructorProducto(a,b))
-//     idProducto = idProducto + 1
-// }
-// agregarProductos ("BiciConstruc", 1500 )
-// agregarProductos ("MotoConstruc", 3000 )
-// agregarProductos ("AutoConstruc", 25000 )
-// agregarProductos ("CASAConstruc", 215000 )
-
-
-// listarProductos (listadoDeProductosConstructor)
-
-// Fin Probamos creando los productos por un Constructor!!!!! funciono!!!!!!!
