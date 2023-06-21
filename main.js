@@ -178,11 +178,16 @@ function listarProductosCarrito(a){
         const p3 = document.createElement("p")
         p3.innerText = "$ " + producto.precio
 
+        const imga = document.createElement ('img')
+        imga.setAttribute ('src', './icons/icon_close.png')
+        imga.setAttribute ('alt', 'close')
+
         div1ero.appendChild(p1)
         figuree.appendChild(imgg)
         div1ero.appendChild(figuree)
         div1ero.appendChild(p2)
         div1ero.appendChild(p3)
+        div1ero.appendChild(imga)
         
         myOrderContent.appendChild(div1ero)
     }
